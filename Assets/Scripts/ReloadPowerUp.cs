@@ -11,4 +11,11 @@ public class ReloadPowerUp : Item
     {
 
     }
+
+    //logic for when the obstacle is hit
+    //IMPLEMENT THIS
+    public override void OnHit()
+    {
+
+    }
 }

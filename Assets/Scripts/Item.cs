@@ -5,7 +5,7 @@ using UnityEngine;
 //base class for all items that will be spawned in the game
 //this class can be extended for specific item types like enemies, astronauts, etc.
 //inherit from here
-public class Item : MonoBehaviour
+public abstract class Item : MonoBehaviour
 {
     public float speed = 3f; //speed of the item, can be set in the inspector or dynamically
 
@@ -37,4 +37,5 @@ public class Item : MonoBehaviour
     {
         speed = newSpeed;
     }
+    public abstract void OnHit(); // abstract method to be implemented by derived classes, ensure that each item can handle being hit
 }

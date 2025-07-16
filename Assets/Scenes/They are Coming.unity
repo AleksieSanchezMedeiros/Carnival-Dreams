@@ -320,6 +320,7 @@ GameObject:
   - component: {fileID: 2080079722}
   - component: {fileID: 2080079721}
   - component: {fileID: 2080079720}
+  - component: {fileID: 2080079724}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -413,6 +414,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -35, y: 0, z: 0}
+--- !u!114 &2080079724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2080079719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc1e0f661ebc8048a5546677bb5087e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8261304701087867614
 PrefabInstance:
   m_ObjectHideFlags: 0
