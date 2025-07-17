@@ -9,7 +9,7 @@ public abstract class Item : MonoBehaviour
 {
     public float speed = 3f; //speed of the item, can be set in the inspector or dynamically
 
-    public float killLength = 150f;
+    public float killLength = 150f; //would be better to link it with the GamePanel, but for now this is fine
 
     private Vector3 startPosition; //initial position of the item, used to determine when to destroy it
     private bool isLeftSpawn;
