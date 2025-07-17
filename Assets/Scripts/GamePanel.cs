@@ -34,8 +34,9 @@ public class GamePanel : MonoBehaviour
         //calculate rail spawn point
         center = transform.position;
         topLeft = center + new Vector3(-playingFieldWidth / 2f, playingFieldHeight / 2f, 0f);
-        spawnPointArray = new Vector3[numOfRails];
+        spawnPointArray = new Vector3[numOfRails * 2]; //double the size to account for both sides
 
+        //LEFT SPAWN POINTS
         //moving through adding the spawn points to list
         //have it always be centered
         float spacing = (float)playingFieldHeight / numOfRails;
@@ -44,6 +45,14 @@ public class GamePanel : MonoBehaviour
             //i love vector math
             float individualSeparation = ((numOfRails - 1) / 2f - i) * spacing;
             spawnPointArray[i] = center + new Vector3(-playingFieldWidth / 2f, individualSeparation, 0f);
+        }
+
+        //RIGHT SPAWN POINTS
+        for (int i = 0; i < numOfRails; i++)
+        {
+            //i love vector math
+            float individualSeparation = ((numOfRails - 1) / 2f - i) * spacing;
+            spawnPointArray[i + numOfRails] = center + new Vector3(playingFieldWidth / 2f, individualSeparation, 0f);
         }
         
         // start spawn loop cause update is calling every frame
@@ -65,7 +74,8 @@ public class GamePanel : MonoBehaviour
             yield return new WaitForSeconds(timeBetweenSpawn);
 
             //randomly select a spawn point
-            int randomSpawnIndex = Random.Range(0, numOfRails);
+            int randomSpawnIndex = Random.Range(0, numOfRails * 2);
+
             Vector3 spawnPoint = spawnPointArray[randomSpawnIndex];
 
             //EDIT HERE TO DETERMINE CHANCE OF ITEM SPAWNING
@@ -75,6 +85,16 @@ public class GamePanel : MonoBehaviour
 
             //instantiate the item at the spawn point
             GameObject spawnedItem = Instantiate(itemToSpawn, spawnPoint, Quaternion.identity);
+
+            //if the random index is greater than the number of rails, it will be on the right side
+            if (randomSpawnIndex >= numOfRails)
+            {
+                spawnedItem.GetComponent<Item>().SetSpawnOrientation(false);
+            }
+            else
+            {
+                spawnedItem.GetComponent<Item>().SetSpawnOrientation(true);
+            }
 
             //set the speed of the item (assuming it has a script that handles movement)
             Item itemMovement = spawnedItem.GetComponent<Item>();

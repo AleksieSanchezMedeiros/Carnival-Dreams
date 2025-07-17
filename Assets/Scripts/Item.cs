@@ -11,19 +11,29 @@ public abstract class Item : MonoBehaviour
 
     public float killLength = 150f;
 
-    private Vector3 startPosition;
-    void Start()
+    private Vector3 startPosition; //initial position of the item, used to determine when to destroy it
+    private bool isLeftSpawn;
+
+    private bool spawnOrientation; // true for left, false for right, used to determine which side the item spawns on
+    void Awake()
     {
         // Set the initial position of the item
         startPosition = transform.position;
+
     }
 
     //movement is handled here instead of in GamePanel
     //this allows each item to move independently
     void Update()
     {
-        // Move the item downwards at the specified speed
-        transform.Translate(Vector3.right * speed * Time.deltaTime);
+        // Move the item depending on left or right depending on spawn point at the specified speed
+        //currently checking every frame, could be optimized if needed
+        if (isLeftSpawn)
+            transform.Translate(Vector3.right * speed * Time.deltaTime);
+        else
+        {
+            transform.Translate(Vector3.left * speed * Time.deltaTime);
+        }
 
         // If the item has moved beyond the kill length, destroy it
         if (Vector3.Distance(startPosition, transform.position) > killLength)
@@ -37,5 +47,11 @@ public abstract class Item : MonoBehaviour
     {
         speed = newSpeed;
     }
+
+    public void SetSpawnOrientation(bool newIsLeftSpawn)
+    {
+        isLeftSpawn = newIsLeftSpawn;
+    }
+
     public abstract void OnHit(); // abstract method to be implemented by derived classes, ensure that each item can handle being hit
 }

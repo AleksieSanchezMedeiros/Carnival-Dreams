@@ -71,6 +71,7 @@ public class Gun : MonoBehaviour
                     Item item = hit.collider.GetComponent<Item>();
                     if (item != null)
                     {
+                        Debug.Log("Hit item: " + item.name);
                         // Handle the item interaction here
                         item.OnHit(); // something will happen depending on the item type
                         StartCoroutine(BulletDeathAfterHit(firedBullet)); // Destroy the bullet after hitting an item
