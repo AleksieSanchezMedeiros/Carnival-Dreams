@@ -6,16 +6,24 @@ using UnityEngine;
 //this class represents a power-up that grants score invincibility in the game
 public class InvinciblePowerUp : Item
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
+    public float invincibilityDuration = 7f;
+    private bool isInvincible = false;
+    
     //logic for when the obstacle is hit
     //IMPLEMENT THIS
     public override void OnHit()
     {
+        if (!isInvincible) {
+            isInvincible = true;
+            StartCoroutine(InvincibilityCoroutine());
+        }
+    }
+
+    private IEnumerator InvincibilityCoroutine()
+    {
+        yield return new WaitForSeconds(invincibilityDuration);
+        isInvincible = false;
+        Destroy(gameObject);
 
     }
 }
