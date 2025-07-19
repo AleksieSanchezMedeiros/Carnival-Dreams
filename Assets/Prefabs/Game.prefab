@@ -46,13 +46,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playingFieldHeight: 50
   playingFieldWidth: 100
+  playingFieldDepth: 100
   numOfRails: 3
-  speedOfItems: 25
+  speedOfItems: 23
   timeBetweenSpawn: 1
   itemsOnRail:
-  - {fileID: 4370351522327975709, guid: 745a5b0cfb0d36a41bd64073cf39c28b, type: 3}
-  - {fileID: 7436849676852679552, guid: c4aea298f1d4bd340b7cc45fbb22e780, type: 3}
-  - {fileID: 3317095528242731877, guid: 061a3610b92fbfc4eb96d9c38a64ff59, type: 3}
-  - {fileID: 4517158420326211916, guid: 5c7f85b90f3b215429bca0e5409c3952, type: 3}
-  - {fileID: 812759081481039559, guid: edcdbaa3515e470438cf7959bca765e7, type: 3}
-  - {fileID: 3922706012525727459, guid: 23100179c561ed747a2e93ea1bce86d6, type: 3}
+  - itemPrefab: {fileID: 4370351522327975709, guid: 745a5b0cfb0d36a41bd64073cf39c28b, type: 3}
+    spawnChance: 0.8
+  - itemPrefab: {fileID: 7436849676852679552, guid: c4aea298f1d4bd340b7cc45fbb22e780, type: 3}
+    spawnChance: 0.7
+  - itemPrefab: {fileID: 3317095528242731877, guid: 061a3610b92fbfc4eb96d9c38a64ff59, type: 3}
+    spawnChance: 0.2
+  - itemPrefab: {fileID: 3922706012525727459, guid: 23100179c561ed747a2e93ea1bce86d6, type: 3}
+    spawnChance: 0.3
+  - itemPrefab: {fileID: 4517158420326211916, guid: 5c7f85b90f3b215429bca0e5409c3952, type: 3}
+    spawnChance: 0.6
+  - itemPrefab: {fileID: 812759081481039559, guid: edcdbaa3515e470438cf7959bca765e7, type: 3}
+    spawnChance: 0.6

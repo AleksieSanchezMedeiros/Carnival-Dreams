@@ -7,16 +7,17 @@ public class GamePanel : MonoBehaviour
     //tweak these as needed
     [SerializeField] int playingFieldHeight = 50; //height of the panel the game will play on, used to find spawn points
     [SerializeField] int playingFieldWidth = 100; //width of the panel the game will play on, used to find spawn points
+    [SerializeField] int playingFieldDepth = 50; //depth of the panel the game will play on, used to find spawn points
     [SerializeField] int numOfRails = 3; //try to limit to like 5 max probably, CANNOT CURRENTLY BE CHANGED AT RUNTIME
     [SerializeField] float speedOfItems = 3f; //arbitary
     [SerializeField] float timeBetweenSpawn = 1f; //in seconds
-    public GameObject[] itemsOnRail = new GameObject[6]; //set prefab for each item, easy way out for now will need to change later
-                                                         //0 is enemy
-                                                         //1 is astronaut
-                                                         //2 is obstacle
-                                                         //3 is power up reload
-                                                         //4 is power up wobble
-                                                         //5 is power up invincible
+    public SpawnableItem[] itemsOnRail = new SpawnableItem[6]; //set prefab for each item, easy way out for now will need to change later
+                                                               //0 is enemy
+                                                               //1 is astronaut
+                                                               //2 is obstacle
+                                                               //3 is power up reload
+                                                               //4 is power up wobble
+                                                               //5 is power up invincible
 
     //references to positions in square
     private Vector3 center;
@@ -33,18 +34,24 @@ public class GamePanel : MonoBehaviour
     {
         //calculate rail spawn point
         center = transform.position;
-        topLeft = center + new Vector3(-playingFieldWidth / 2f, playingFieldHeight / 2f, 0f);
+        topLeft = center + new Vector3(-playingFieldWidth / 2f, playingFieldHeight / 2f, playingFieldDepth / 2f);
         spawnPointArray = new Vector3[numOfRails * 2]; //double the size to account for both sides
+
+        //calculate the spawn points for the rails
+        float spacing = (float)playingFieldHeight / numOfRails;
+
+        //calculate the depth of each rail
+        float zSpacing = (float)playingFieldDepth / numOfRails;
 
         //LEFT SPAWN POINTS
         //moving through adding the spawn points to list
         //have it always be centered
-        float spacing = (float)playingFieldHeight / numOfRails;
         for (int i = 0; i < numOfRails; i++)
         {
             //i love vector math
             float individualSeparation = ((numOfRails - 1) / 2f - i) * spacing;
-            spawnPointArray[i] = center + new Vector3(-playingFieldWidth / 2f, individualSeparation, 0f);
+            float individualZSeparation = ((numOfRails - 1) / 2f - i) * zSpacing;
+            spawnPointArray[i] = center + new Vector3(-playingFieldWidth / 2f, individualSeparation, individualZSeparation);
         }
 
         //RIGHT SPAWN POINTS
@@ -52,18 +59,17 @@ public class GamePanel : MonoBehaviour
         {
             //i love vector math
             float individualSeparation = ((numOfRails - 1) / 2f - i) * spacing;
-            spawnPointArray[i + numOfRails] = center + new Vector3(playingFieldWidth / 2f, individualSeparation, 0f);
+            float individualZSeparation = ((numOfRails - 1) / 2f - i) * zSpacing;
+            spawnPointArray[i + numOfRails] = center + new Vector3(playingFieldWidth / 2f, individualSeparation, individualZSeparation);
         }
-        
+
         // start spawn loop cause update is calling every frame
         StartCoroutine(SpawnItemsLoop());
     }
 
     void Update()
     {
-        //items will move faster based on the speed
-        //make clone of items every blah seconds, change their speed value to set amount
-        //StartCoroutine(SpawnItems());
+        // Update logic can be added here if needed, currently not used
     }
 
     IEnumerator SpawnItemsLoop()
@@ -78,10 +84,8 @@ public class GamePanel : MonoBehaviour
 
             Vector3 spawnPoint = spawnPointArray[randomSpawnIndex];
 
-            //EDIT HERE TO DETERMINE CHANCE OF ITEM SPAWNING
-            //for now just randomly select an item to spawn
-            int randomItemIndex = Random.Range(0, itemsOnRail.Length);
-            GameObject itemToSpawn = itemsOnRail[randomItemIndex];
+            //change spawn based on weighted random chance
+            GameObject itemToSpawn = GetWeightedRandomItem();
 
             //instantiate the item at the spawn point
             GameObject spawnedItem = Instantiate(itemToSpawn, spawnPoint, Quaternion.identity);
@@ -110,11 +114,11 @@ public class GamePanel : MonoBehaviour
     {
         //draw the gizmo for the playing field
         Gizmos.color = new Color(1f, 0f, 0f);
-        Gizmos.DrawWireCube(transform.position, new Vector3(playingFieldWidth, playingFieldHeight, 0.01f));
+        Gizmos.DrawWireCube(transform.position, new Vector3(playingFieldWidth, playingFieldHeight, playingFieldDepth));
 
         //need to rewrite this cause this works before start is called
         Vector3 center = transform.position;
-        Vector3 topLeft = center + new Vector3(-playingFieldWidth / 2f, playingFieldHeight / 2f, 0f);
+        Vector3 topLeft = center + new Vector3(-playingFieldWidth / 2f, playingFieldHeight / 2f, playingFieldDepth / 2f);
 
 
         //draw the gizmo for the spawn points
@@ -124,9 +128,45 @@ public class GamePanel : MonoBehaviour
         //blue for spawn points, only works on run time will give errors otherwise, comment out when it gets annoying
         /*
         Gizmos.color = new Color(0f, 0f, 1f);
-        for (int i = 0; i < numOfRails; i++)
+        for (int i = 0; i < numOfRails * 2; i++) //times 2 for left and right spawn points
         {
             Gizmos.DrawSphere(spawnPointArray[i], 1f);
         }*/
     }
+    
+    //add together all the random spawn chances and return a random item based on the weights
+    private GameObject GetWeightedRandomItem()
+    {
+        //calculate the total weight of all items
+        float totalWeight = 0f;
+        foreach (var item in itemsOnRail)
+        {
+            totalWeight += item.spawnChance;
+        }
+
+        //generate a random number between 0 and totalWeight
+        float randomValue = Random.Range(0f, totalWeight);
+
+        //iterate through the items and return the one that matches the random value
+        float cumulativeWeight = 0f;
+        foreach (var item in itemsOnRail)
+        {
+            cumulativeWeight += item.spawnChance;
+            if (randomValue <= cumulativeWeight)
+            {
+                return item.itemPrefab;
+            }
+        }
+
+        return itemsOnRail[itemsOnRail.Length - 1].itemPrefab; // Fallback will return the last item if no match found
+    }
+}
+
+// Struct to hold item prefab and its spawn chance
+[System.Serializable]
+public struct SpawnableItem
+{
+    public GameObject itemPrefab; // Prefab of the item to spawn
+    [Range(0f, 1f)]
+    public float spawnChance; // Chance of this item spawning, 0-1 range
 }

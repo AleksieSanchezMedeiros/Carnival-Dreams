@@ -15,6 +15,8 @@ public abstract class Item : MonoBehaviour
     private bool isLeftSpawn;
 
     private bool spawnOrientation; // true for left, false for right, used to determine which side the item spawns on
+
+    [SerializeField] GameUI gameUI; // Reference to the GameUI script to update score and ammo
     void Awake()
     {
         // Set the initial position of the item
