@@ -7,7 +7,7 @@ public class Gun : MonoBehaviour
     [SerializeField] float cameraLookDistance = 60f; // Distance from the camera to the target point, basically adjusts look angle for the gun
     [SerializeField] int ammoMax = 6; // ammo count for the gun, 6 like a revolver as default
     [SerializeField] public float reloadTime = 2f; // time it takes to reload the gun
-    [SerializeField] float fireRate = 0.5f; // time between shots
+    [SerializeField] public float fireRate = 0.5f; // time between shots
 
 
     public GameObject bullet; // bullet prefab
@@ -21,7 +21,7 @@ public class Gun : MonoBehaviour
     bool canFire; // Flag to check if the gun can fire
     public bool reloading = false; // Flag to check if the gun is currently reloading
 
-    [SerializeField] GameUI gameUI; // Reference to the GameUI script to update score and ammo
+    [SerializeField] GameUI gameUI; // Reference to the GameUI script to update ammo
 
     // Start is called before the first frame update
     void Start()

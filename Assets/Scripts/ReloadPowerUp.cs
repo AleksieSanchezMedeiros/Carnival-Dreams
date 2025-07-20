@@ -9,11 +9,20 @@ public class ReloadPowerUp : Item
     public float noReloadDuration = 7f;
     private bool isActive = false;
 
+    Gun gun;
+
+    void Start()
+    {
+        //only need to find the gun once
+        gun = FindFirstObjectByType<Gun>();
+    }
+
     //logic for when the obstacle is hit
     //IMPLEMENT THIS
     public override void OnHit()
     {
-        if (!isActive) {
+        if (!isActive)
+        {
             isActive = true;
             StartCoroutine(noReloadCoroutine());
         }
@@ -21,13 +30,18 @@ public class ReloadPowerUp : Item
 
     private IEnumerator noReloadCoroutine()
     {
-        Gun gun = FindObjectOfType<Gun>();
-
-        if (gun != null) {
+        if (gun != null)
+        {
             float originalReloadTime = gun.reloadTime;
+            float originalFireRate = gun.fireRate;
             gun.reloadTime = 0f;
+            gun.fireRate = 0.1f; // Disable fire rate to max firing speed
+            gameUI.DisplayPowerUp("Inf Ammo!"); // Update the UI to indicate reloading is disabled
+            StartCoroutine(gameUI.timerCoroutine(noReloadDuration));
             yield return new WaitForSeconds(noReloadDuration);
             gun.reloadTime = originalReloadTime;
+            gun.fireRate = originalFireRate; // Restore the original fire rate
+            gameUI.UpdateTimer(0f); // Clear the timer text
         }
         Destroy(gameObject);
     }

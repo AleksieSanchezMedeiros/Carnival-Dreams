@@ -9,19 +9,19 @@ public abstract class Item : MonoBehaviour
 {
     public float speed = 3f; //speed of the item, can be set in the inspector or dynamically
 
-    public float killLength = 150f; //would be better to link it with the GamePanel, but for now this is fine
+    public float killLength = 1000; //would be better to link it with the GamePanel, but for now this is fine
 
     private Vector3 startPosition; //initial position of the item, used to determine when to destroy it
     private bool isLeftSpawn;
 
     private bool spawnOrientation; // true for left, false for right, used to determine which side the item spawns on
 
-    [SerializeField] GameUI gameUI; // Reference to the GameUI script to update score and ammo
+    public GameUI gameUI; // Reference to the GameUI script to update score and ammo
     void Awake()
     {
         // Set the initial position of the item
         startPosition = transform.position;
-
+        gameUI = FindFirstObjectByType<GameUI>();
     }
 
     //movement is handled here instead of in GamePanel

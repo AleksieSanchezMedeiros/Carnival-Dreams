@@ -10,11 +10,20 @@ public class WobblePowerUp : Item
     public float reducedLookDistance = 10f;
     public bool isActive = false;
 
+    Gun gun;
+
+    void Start()
+    {
+        
+        gun = FindFirstObjectByType<Gun>();
+        //only need to find the gun once
+    }
     //logic for when the obstacle is hit
     //IMPLEMENT THIS
     public override void OnHit()
     {
-        if (!isActive) {
+        if (!isActive)
+        {
             isActive = true;
             StartCoroutine(WobbleCoroutine());
         }
@@ -22,7 +31,6 @@ public class WobblePowerUp : Item
 
     private IEnumerator WobbleCoroutine()
     {
-        Gun gun = FindObjectOfType<Gun>();
 
         if (gun != null) {
             yield return new WaitForSeconds(wobbleReductionDuration);
