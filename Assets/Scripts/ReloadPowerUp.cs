@@ -26,6 +26,19 @@ public class ReloadPowerUp : Item
             isActive = true;
             StartCoroutine(noReloadCoroutine());
         }
+
+        //instead of destroying lets disable the mesh renderer and collider
+        //not destroying so that the power up completetes its coroutine
+        MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
+        if (meshRenderer != null)
+        {
+            meshRenderer.enabled = false; // Disable the mesh renderer
+        }
+        Collider collider = GetComponent<Collider>();
+        if (collider != null)
+        {
+            collider.enabled = false; // Disable the collider
+        }
     }
 
     private IEnumerator noReloadCoroutine()
@@ -43,6 +56,7 @@ public class ReloadPowerUp : Item
             gun.fireRate = originalFireRate; // Restore the original fire rate
             gameUI.UpdateTimer(0f); // Clear the timer text
         }
-        Destroy(gameObject);
+        Debug.Log("should be destroying reload power-up");
+        Destroy(this.gameObject); // Destroy the power-up object after use
     }
 }
