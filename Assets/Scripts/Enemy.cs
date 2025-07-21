@@ -16,6 +16,11 @@ public class Enemy : Item
     //IMPLEMENT THIS
     public override void OnHit()
     {
+        gameUI.UpdateScore(1); // Update the score by 10 points when hit
+        
+        // You might also want to play a sound or spawn a particle effect here
 
+        // For now, let's just destroy the enemy object
+        Destroy(this.gameObject);
     }
 }
