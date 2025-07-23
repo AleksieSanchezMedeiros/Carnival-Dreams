@@ -6,8 +6,9 @@ public class Gun : MonoBehaviour
 {
     [SerializeField] float cameraLookDistance = 60f; // Distance from the camera to the target point, basically adjusts look angle for the gun
     [SerializeField] int ammoMax = 6; // ammo count for the gun, 6 like a revolver as default
-    [SerializeField] float reloadTime = 2f; // time it takes to reload the gun
-    [SerializeField] float fireRate = 0.5f; // time between shots
+    [SerializeField] public float reloadTime = 2f; // time it takes to reload the gun
+    [SerializeField] public float fireRate = 0.5f; // time between shots
+
 
     public GameObject bullet; // bullet prefab
     public float bulletSpeed = 20f; // speed of the bullet, mostly for visuals since it is hitscan
@@ -18,6 +19,9 @@ public class Gun : MonoBehaviour
     Camera mainCamera;
 
     bool canFire; // Flag to check if the gun can fire
+    public bool reloading = false; // Flag to check if the gun is currently reloading
+
+    [SerializeField] GameUI gameUI; // Reference to the GameUI script to update ammo
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +34,11 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!reloading)
+            gameUI.UpdateAmmo(currentAmmoCount); // Update ammo UI
+        else
+            gameUI.DisplayReload(); // Display reloading message if gun cannot fire
+
         //3d position of the mouse in the world
         Vector3 mousePosition = Input.mousePosition;
         Ray ray = mainCamera.ScreenPointToRay(mousePosition);
@@ -101,10 +110,12 @@ public class Gun : MonoBehaviour
     IEnumerator ReloadCoroutine()
     {
         canFire = false; // Disable firing while reloading
+        reloading = true; // Set reloading flag to true
         Debug.Log("Reloading...");
         yield return new WaitForSeconds(reloadTime);
         currentAmmoCount = ammoMax; // Reset ammo count after reloading
         canFire = true; // Re-enable firing after reloading
+        reloading = false; // Reset reloading flag
         Debug.Log("Reloaded!");
     }
 
