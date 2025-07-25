@@ -13,7 +13,11 @@ public class GameUI : MonoBehaviour
 
     public TextMeshProUGUI timerText; // Reference to the timer text component
 
+    public TextMeshProUGUI gameTimerText; // Reference to the time left component
+
     public float amountOfPopUpTime = 3f; // Time to display power-up text
+
+    public float gameDuration = 5f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,11 +26,20 @@ public class GameUI : MonoBehaviour
         scoreText.text = "Score: " + score; // Update the UI text
         powerUpText.text = ""; // Clear power-up text at the start
         ammoText.text = "Ammo: 0"; // Initialize ammo text
+        StartCoroutine(GameTimer());
     }
 
     public void UpdateScore(int points)
     {
+        if (InvinciblePowerUp.isScoreBlocked && points < 0) {
+            return;
+        }
+
         score += points; // Update the score
+        if (score < 0) {
+            score = 0;
+        }
+
         scoreText.text = "Score: " + score; // Update the UI text
     }
 
@@ -78,5 +91,25 @@ public class GameUI : MonoBehaviour
             timeRemaining--;
         }
         UpdateTimer(0); // ensure timer is cleared at the end
+    }
+
+    private IEnumerator GameTimer()
+    {
+        float timeRemaining = gameDuration;
+        while (timeRemaining > 0f) {
+            gameTimerText.text = "Time:" + Mathf.CeilToInt(timeRemaining);
+            yield return new WaitForSeconds(1f);
+            timeRemaining--;
+        }
+
+        gameTimerText.text = "Game Over!";
+        EndGame();
+    }
+
+    private void EndGame()
+    {
+        Debug.Log("Game Over!");
+        Time.timeScale = 0f;
+
     }
 }
