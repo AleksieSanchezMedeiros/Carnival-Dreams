@@ -34,10 +34,12 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!reloading)
-            gameUI.UpdateAmmo(currentAmmoCount); // Update ammo UI
+        if (!reloading && !gameUI.isReloadActive)
+            gameUI.UpdateAmmo(currentAmmoCount.ToString()); // Update ammo UI
+        else if(gameUI.isReloadActive)
+                    gameUI.UpdateAmmo("∞"); // Update ammo UI to max if reload power-up is active
         else
-            gameUI.DisplayReload(); // Display reloading message if gun cannot fire
+                    gameUI.DisplayReload(); // Display reloading message if gun cannot fire
 
         //3d position of the mouse in the world
         Vector3 mousePosition = Input.mousePosition;
@@ -47,22 +49,22 @@ public class Gun : MonoBehaviour
         Vector3 targetPosition = ray.GetPoint(cameraLookDistance); // Adjust the distance as needed above
         transform.LookAt(targetPosition); // Rotate the gun to look at the target position
 
+        if (currentAmmoCount < 1 && !reloading) // If ammo is less than 1 and not reloading, force reload
+        {
+            currentAmmoCount = 0; // Prevent negative ammo count
+            Debug.Log("Out of ammo!");
+            Reload(); // Force reload if out of ammo
+            return; // Exit if no ammo left
+        }
+
         // Check for fire input
         if (Input.GetMouseButtonDown(0))
         {
-            if (currentAmmoCount <= 0) // Check if ammo is less than 0 to force reload
+            if (canFire && (currentAmmoCount > 0 || gameUI.isReloadActive)) // Only fire if canFire is true and ammo is available
             {
-                currentAmmoCount = 0; // Prevent negative ammo count
-                Debug.Log("Out of ammo!");
-                Reload(); // Force reload if out of ammo
-                return; // Exit if no ammo left
-            }
-
-            if (canFire && currentAmmoCount > 0) // Only fire if canFire is true and ammo is available
-            {
-
-                // Decrease ammo count
-                currentAmmoCount--;
+                
+                if (!gameUI.isReloadActive) currentAmmoCount--; //If reload power-up is not active, decrease ammo count
+                else currentAmmoCount = ammoMax;
 
                 // Instantiate bullet at the gun's position and rotation
                 GameObject firedBullet = Instantiate(bullet, transform.position, bullet.transform.rotation);
@@ -132,4 +134,6 @@ public class Gun : MonoBehaviour
         yield return new WaitForSeconds(bulletDeathHitTime); // Wait for the fire rate delay
         Destroy(firedBullet); // Destroy the bullet after the delay
     }
+
+
 }

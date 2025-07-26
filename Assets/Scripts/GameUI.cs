@@ -25,7 +25,7 @@ public class GameUI : MonoBehaviour
 
     Gun gun;
 
-    bool isReloadActive = false; // Flag to check if the reload power-up is active
+    public bool isReloadActive = false; // Flag to check if the reload power-up is active
 
     bool isInvincibleActive = false; // Flag to check if the invincibility power-up is active
     void Start()
@@ -56,7 +56,7 @@ public class GameUI : MonoBehaviour
         scoreText.text = "Score: " + score; // Update the UI text
     }
 
-    public void UpdateAmmo(int ammo)
+    public void UpdateAmmo(string ammo)
     {
         ammoText.text = "Ammo: " + ammo; // Update the UI text
     }
@@ -147,9 +147,11 @@ public class GameUI : MonoBehaviour
 
     private void EndGame()
     {
+        
+        powerUpText.text = "Game Over!"; // Display game over message
+
         Debug.Log("Game Over!");
         Time.timeScale = 0f;
-
     }
 
     public void UpdateTimer(float timeRemaining)
