@@ -7,23 +7,19 @@ using UnityEngine;
 public class InvinciblePowerUp : Item
 {
     public float invincibilityDuration = 7f;
-    private bool isInvincible = false;
-    
+
+    GameUI gui;
+
+    void Start()
+    {
+        gui = FindFirstObjectByType<GameUI>();
+    }
+
     //logic for when the obstacle is hit
     //IMPLEMENT THIS
     public override void OnHit()
     {
-        if (!isInvincible) {
-            isInvincible = true;
-            StartCoroutine(InvincibilityCoroutine());
-        }
-    }
-
-    private IEnumerator InvincibilityCoroutine()
-    {
-        yield return new WaitForSeconds(invincibilityDuration);
-        isInvincible = false;
-        Destroy(gameObject);
-
+        gui.InvinciblePowerUp(invincibilityDuration); // Call the method to activate the invincibility power-up
+        Destroy(gameObject); // Destroy the power-up object after activation
     }
 }
