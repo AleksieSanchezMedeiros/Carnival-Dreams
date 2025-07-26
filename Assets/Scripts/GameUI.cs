@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameUI : MonoBehaviour
 {
@@ -17,22 +18,36 @@ public class GameUI : MonoBehaviour
 
     public TextMeshProUGUI timerTextReload; // Reference to the game over text component
 
+    public TextMeshProUGUI gameOverText; // Reference to the game over text component
+
     public float amountOfPopUpTime = 3f; // Time to display power-up text
 
     public float gameDuration = 5f;
 
+    public GameObject blur; // Reference to the game over panel
+    public GameObject gameOverButton; // Reference to the game over button
+    public GameObject replayButton; // Reference to the replay button
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     Gun gun;
+
+    public bool gameEnded = false; // Flag to check if the game has ended
 
     public bool isReloadActive = false; // Flag to check if the reload power-up is active
 
     bool isInvincibleActive = false; // Flag to check if the invincibility power-up is active
     void Start()
     {
+        Time.timeScale = 1f; // Ensure the game is running at normal speed
         isReloadActive = false; // Initialize the reload power-up flag
+        gameEnded = false; // Initialize the game ended flag
         isInvincibleActive = false; // Initialize the invincibility power-up flag
+        blur.SetActive(false); // Hide the blur effect at the start
+        gameOverButton.SetActive(false); // Hide the game over button at the start
+        replayButton.SetActive(false); // Hide the replay button at the start
         score = 0; // Initialize score
+        gameOverText.text = ""; // Clear game over text at the start
         scoreText.text = "Score: " + score; // Update the UI text
         powerUpText.text = ""; // Clear power-up text at the start
         ammoText.text = "Ammo: 0"; // Initialize ammo text
@@ -58,6 +73,11 @@ public class GameUI : MonoBehaviour
 
     public void UpdateAmmo(string ammo)
     {
+        if (gameEnded)
+        {
+            ammoText.text = ""; // Clear ammo text if the game has ended
+            return; // Exit if the game has ended
+        }
         ammoText.text = "Ammo: " + ammo; // Update the UI text
     }
 
@@ -136,22 +156,39 @@ public class GameUI : MonoBehaviour
         float timeRemaining = gameDuration;
         while (timeRemaining > 0f)
         {
-            gameTimerText.text = "Time:" + Mathf.CeilToInt(timeRemaining);
+            gameTimerText.text = "Time: " + Mathf.CeilToInt(timeRemaining);
             yield return new WaitForSeconds(1f);
             timeRemaining--;
         }
 
-        gameTimerText.text = "Game Over!";
+        gameTimerText.text = "Time: 0";
         EndGame();
     }
 
     private void EndGame()
     {
-        
-        powerUpText.text = "Game Over!"; // Display game over message
-
-        Debug.Log("Game Over!");
+        gameEnded = true; // Set the game ended flag to true
+        blur.SetActive(true); // Show the blur effect
+        gameOverButton.SetActive(true); // Show the game over button
+        replayButton.SetActive(true); // Show the replay button
+    
+        powerUpText.text = ""; // Clear power-up text
+        timerText.text = ""; // Clear the timer text
+        timerTextReload.text = ""; // Clear the reload timer text
+        scoreText.text = ""; // Clear the score text
+        gameOverText.text = "Game Over!\nFinal Score: " + score; // Display game over message
         Time.timeScale = 0f;
+    }
+
+    public void ReplayGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene to restart the game
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quitting game..."); // Log the quit action
+        Application.Quit(); // Quit the application
     }
 
     public void UpdateTimer(float timeRemaining)

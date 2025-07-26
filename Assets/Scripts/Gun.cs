@@ -34,12 +34,20 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameUI.gameEnded) // If the game has ended, do not allow firing
+        {
+            canFire = false; // Disable firing
+            reloading = false; // Disable reloading
+            gameUI.UpdateAmmo(""); // Update ammo UI to blank
+            return; // Exit the update method
+        }
+
         if (!reloading && !gameUI.isReloadActive)
             gameUI.UpdateAmmo(currentAmmoCount.ToString()); // Update ammo UI
-        else if(gameUI.isReloadActive)
-                    gameUI.UpdateAmmo("∞"); // Update ammo UI to max if reload power-up is active
+        else if (gameUI.isReloadActive)
+            gameUI.UpdateAmmo("∞"); // Update ammo UI to max if reload power-up is active
         else
-                    gameUI.DisplayReload(); // Display reloading message if gun cannot fire
+            gameUI.DisplayReload(); // Display reloading message if gun cannot fire
 
         //3d position of the mouse in the world
         Vector3 mousePosition = Input.mousePosition;

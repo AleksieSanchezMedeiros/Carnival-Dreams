@@ -62,4 +62,4 @@ MonoBehaviour:
   - itemPrefab: {fileID: 4517158420326211916, guid: 5c7f85b90f3b215429bca0e5409c3952, type: 3}
     spawnChance: 0.6
   - itemPrefab: {fileID: 812759081481039559, guid: edcdbaa3515e470438cf7959bca765e7, type: 3}
-    spawnChance: 0.6
+    spawnChance: 0
