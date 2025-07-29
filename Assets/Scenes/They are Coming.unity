@@ -2376,6 +2376,17 @@ PrefabInstance:
       addedObject: {fileID: 1871872263}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7616816456c47ac4ba6cd0d1607624a4, type: 3}
+--- !u!114 &7930134197828427501 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5644697726842596721, guid: 7616816456c47ac4ba6cd0d1607624a4, type: 3}
+  m_PrefabInstance: {fileID: 7930134197828427500}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc1e0f661ebc8048a5546677bb5087e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8261304701087867614
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2455,8 +2466,45 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7518609571085803466, guid: 34cffccacbb6fe54a9fe0976583390a3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8261304701087867617}
   m_SourcePrefab: {fileID: 100100000, guid: 34cffccacbb6fe54a9fe0976583390a3, type: 3}
+--- !u!1 &8261304701087867615 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7518609571085803466, guid: 34cffccacbb6fe54a9fe0976583390a3, type: 3}
+  m_PrefabInstance: {fileID: 8261304701087867614}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8261304701087867616 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7133374801378594956, guid: 34cffccacbb6fe54a9fe0976583390a3, type: 3}
+  m_PrefabInstance: {fileID: 8261304701087867614}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8261304701087867615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dc30a402c352994f8270a294819816a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8261304701087867617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8261304701087867615}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfde66f4752a69946aa5903dca875bcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings:
+  - {fileID: 11400000, guid: b26c9238d7c178e488b083f99eda15b3, type: 2}
+  - {fileID: 11400000, guid: 0e5ea75e717a3e0478ee45d52b02b6cd, type: 2}
+  - {fileID: 11400000, guid: 6b6b48eb11bb0e8448e1d150b7f3ebbd, type: 2}
+  playerGun: {fileID: 7930134197828427501}
+  gamePanel: {fileID: 8261304701087867616}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

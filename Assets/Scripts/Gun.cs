@@ -36,10 +36,10 @@ public class Gun : MonoBehaviour
     {
         if (!reloading && !gameUI.isReloadActive)
             gameUI.UpdateAmmo(currentAmmoCount.ToString()); // Update ammo UI
-        else if(gameUI.isReloadActive)
-                    gameUI.UpdateAmmo("∞"); // Update ammo UI to max if reload power-up is active
+        else if (gameUI.isReloadActive)
+            gameUI.UpdateAmmo("∞"); // Update ammo UI to max if reload power-up is active
         else
-                    gameUI.DisplayReload(); // Display reloading message if gun cannot fire
+            gameUI.DisplayReload(); // Display reloading message if gun cannot fire
 
         //3d position of the mouse in the world
         Vector3 mousePosition = Input.mousePosition;
@@ -62,7 +62,7 @@ public class Gun : MonoBehaviour
         {
             if (canFire && (currentAmmoCount > 0 || gameUI.isReloadActive)) // Only fire if canFire is true and ammo is available
             {
-                
+
                 if (!gameUI.isReloadActive) currentAmmoCount--; //If reload power-up is not active, decrease ammo count
                 else currentAmmoCount = ammoMax;
 
@@ -135,5 +135,10 @@ public class Gun : MonoBehaviour
         Destroy(firedBullet); // Destroy the bullet after the delay
     }
 
-
+    public void setDifficultyVariables(int ammoMax, float reloadTime, float fireRate)
+    {
+        this.ammoMax = ammoMax;
+        this.reloadTime = reloadTime;
+        this.fireRate = fireRate;
+    }
 }

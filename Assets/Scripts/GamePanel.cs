@@ -133,7 +133,7 @@ public class GamePanel : MonoBehaviour
             Gizmos.DrawSphere(spawnPointArray[i], 1f);
         }*/
     }
-    
+
     //add together all the random spawn chances and return a random item based on the weights
     private GameObject GetWeightedRandomItem()
     {
@@ -159,6 +159,12 @@ public class GamePanel : MonoBehaviour
         }
 
         return itemsOnRail[itemsOnRail.Length - 1].itemPrefab; // Fallback will return the last item if no match found
+    }
+
+    public void setDificultyVariables(float speedOfItems, float timeBetweenSpawn)
+    {
+        this.speedOfItems = speedOfItems;
+        this.timeBetweenSpawn = timeBetweenSpawn;
     }
 }
 
