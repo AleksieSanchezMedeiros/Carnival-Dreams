@@ -19,7 +19,7 @@ public class GameUI : MonoBehaviour
 
     public float amountOfPopUpTime = 3f; // Time to display power-up text
 
-    public float gameDuration = 5f;
+    public float gameDuration;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
@@ -136,7 +136,9 @@ public class GameUI : MonoBehaviour
         float timeRemaining = gameDuration;
         while (timeRemaining > 0f)
         {
-            gameTimerText.text = "Time:" + Mathf.CeilToInt(timeRemaining);
+            int seconds = Mathf.RoundToInt(timeRemaining % 60);
+            int minutes = Mathf.RoundToInt(timeRemaining / 60);
+            gameTimerText.text = "Time:" + minutes + ":" + seconds;
             yield return new WaitForSeconds(1f);
             timeRemaining--;
         }

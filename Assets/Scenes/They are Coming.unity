@@ -2205,7 +2205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2659075659705028718, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
       propertyPath: gameDuration
-      value: 180
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 2659075659705028718, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
       propertyPath: gameTimerText
@@ -2222,6 +2222,10 @@ PrefabInstance:
     - target: {fileID: 3039767889140342041, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3739849374262913661, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_margin.z
+      value: -150.65302
       objectReference: {fileID: 0}
     - target: {fileID: 4205107411838200284, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
       propertyPath: m_Pivot.x
