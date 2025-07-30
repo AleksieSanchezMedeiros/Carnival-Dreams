@@ -10,7 +10,7 @@ public class DifficultyPicker : MonoBehaviour
     void setDificulty(int difficultyPicked)
     {
         playerGun.setDifficultyVariables(settings[difficultyPicked].ammoMax, settings[difficultyPicked].reloadTime, settings[difficultyPicked].fireRate);
-        for (int i = 0; i < gamePanel.itemsOnRail.Length; i++)
+        for (int i = 0; i < settings[difficultyPicked].spawnChances.Length; i++)
         {
             gamePanel.itemsOnRail[i].spawnChance = settings[difficultyPicked].spawnChances[i];
         }
