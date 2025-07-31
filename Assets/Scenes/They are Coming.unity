@@ -1377,17 +1377,6 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
---- !u!114 &1408824402 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 573791061955870857, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
-  m_PrefabInstance: {fileID: 6393341044054922181}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1510374666
 GameObject:
   m_ObjectHideFlags: 0
@@ -1625,17 +1614,6 @@ Transform:
   - {fileID: 480231659}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1845442972 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3739849374262913661, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
-  m_PrefabInstance: {fileID: 6393341044054922181}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1870161520
 GameObject:
   m_ObjectHideFlags: 0
@@ -2187,45 +2165,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2366773838295274577, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 393.3467
-      objectReference: {fileID: 0}
-    - target: {fileID: 2366773838295274577, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 76.7797
-      objectReference: {fileID: 0}
-    - target: {fileID: 2366773838295274577, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 206.33388
-      objectReference: {fileID: 0}
-    - target: {fileID: 2366773838295274577, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -40.994995
-      objectReference: {fileID: 0}
-    - target: {fileID: 2659075659705028718, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
-      propertyPath: gameDuration
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 2659075659705028718, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
-      propertyPath: gameTimerText
-      value: 
-      objectReference: {fileID: 1845442972}
-    - target: {fileID: 2659075659705028718, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
-      propertyPath: timerTextReload
-      value: 
-      objectReference: {fileID: 1408824402}
-    - target: {fileID: 2659075659705028718, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
-      propertyPath: amountOfPopUpTime
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3039767889140342041, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
       propertyPath: m_Name
       value: Canvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 3739849374262913661, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
-      propertyPath: m_margin.z
-      value: -150.65302
       objectReference: {fileID: 0}
     - target: {fileID: 4205107411838200284, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
       propertyPath: m_Pivot.x

@@ -6,7 +6,7 @@ using UnityEngine;
 //this class represents a power-up that gives no cooldown the player's weapon in the game
 public class ReloadPowerUp : Item
 {
-    public float noReloadDuration = 7f;
+    public float buffDuration = 8f;
 
     GameUI gui;
 
@@ -20,7 +20,7 @@ public class ReloadPowerUp : Item
     //IMPLEMENT THIS
     public override void OnHit()
     {
-        gui.ReloadPowerUp(noReloadDuration); // Call the method to activate the reload power-up
+        gui.ReloadPowerUp(buffDuration); // Call the method to activate the reload power-up
         Destroy(gameObject); // Destroy the power-up object after activation
     }
 }

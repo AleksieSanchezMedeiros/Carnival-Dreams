@@ -17,7 +17,7 @@ public class GameUI : MonoBehaviour
 
     public TextMeshProUGUI timerTextReload; // Reference to the game over text component
 
-    public float amountOfPopUpTime = 3f; // Time to display power-up text
+    public float amountOfPopUpTime = 0.2f; // Time to display power-up text
 
     public float gameDuration;
 
@@ -33,9 +33,9 @@ public class GameUI : MonoBehaviour
         isReloadActive = false; // Initialize the reload power-up flag
         isInvincibleActive = false; // Initialize the invincibility power-up flag
         score = 0; // Initialize score
-        scoreText.text = "Score: " + score; // Update the UI text
+        scoreText.text = score.ToString(); // Update the UI text
         powerUpText.text = ""; // Clear power-up text at the start
-        ammoText.text = "Ammo: 0"; // Initialize ammo text
+        ammoText.text = "0"; // Initialize ammo text
         gun = FindFirstObjectByType<Gun>();
         StartCoroutine(GameTimer());
     }
@@ -53,12 +53,12 @@ public class GameUI : MonoBehaviour
             score = 0;
         }
 
-        scoreText.text = "Score: " + score; // Update the UI text
+        scoreText.text = score.ToString(); // Update the UI text
     }
 
     public void UpdateAmmo(string ammo)
     {
-        ammoText.text = "Ammo: " + ammo; // Update the UI text
+        ammoText.text = ammo; // Update the UI text
     }
 
     public void DisplayReload()
@@ -138,7 +138,7 @@ public class GameUI : MonoBehaviour
         {
             int seconds = Mathf.RoundToInt(timeRemaining % 60);
             int minutes = Mathf.RoundToInt(timeRemaining / 60);
-            gameTimerText.text = "Time:" + minutes + ":" + seconds;
+            gameTimerText.text = minutes + ":" + seconds;
             yield return new WaitForSeconds(1f);
             timeRemaining--;
         }

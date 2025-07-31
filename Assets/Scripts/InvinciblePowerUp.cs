@@ -6,7 +6,7 @@ using UnityEngine;
 //this class represents a power-up that grants score invincibility in the game
 public class InvinciblePowerUp : Item
 {
-    public float invincibilityDuration = 7f;
+    public float buffDuration = 8f;
 
     GameUI gui;
 
@@ -19,7 +19,7 @@ public class InvinciblePowerUp : Item
     //IMPLEMENT THIS
     public override void OnHit()
     {
-        gui.InvinciblePowerUp(invincibilityDuration); // Call the method to activate the invincibility power-up
+        gui.InvinciblePowerUp(buffDuration); // Call the method to activate the invincibility power-up
         Destroy(gameObject); // Destroy the power-up object after activation
     }
 }
