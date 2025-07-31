@@ -63,7 +63,7 @@ public class GameUI : MonoBehaviour
 
     public void DisplayReload()
     {
-        ammoText.text = "Reloading..."; // Update the UI text to indicate reloading
+        ammoText.text = "Rel..."; // Update the UI text to indicate reloading
     }
 
     public void ReloadPowerUp(float duration)
@@ -86,7 +86,7 @@ public class GameUI : MonoBehaviour
         gun.fireRate = 0.1f;
         StartCoroutine(timerCoroutineReload(duration));
         yield return new WaitForSeconds(duration); // Wait for the duration of the power-up
-        DisplayPowerUp("Reload Over!"); // Display the end of the power-up message
+        DisplayPowerUp("Infinite ammo over!"); // Display the end of the power-up message
         isReloadActive = false; // Reset the flag
         gun.reloadTime = originalReloadTime;
         gun.fireRate = originalFireRate;
