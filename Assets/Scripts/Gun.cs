@@ -34,6 +34,9 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(Time.timeScale == 0) return; // If the game is paused, do not update the gun
+
         if (!reloading && !gameUI.isReloadActive)
             gameUI.UpdateAmmo(currentAmmoCount.ToString()); // Update ammo UI
         else if (gameUI.isReloadActive)

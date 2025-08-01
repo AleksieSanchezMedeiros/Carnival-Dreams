@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameUI : MonoBehaviour
 {
@@ -38,6 +39,11 @@ public class GameUI : MonoBehaviour
         ammoText.text = "0"; // Initialize ammo text
         gun = FindFirstObjectByType<Gun>();
         StartCoroutine(GameTimer());
+    }
+
+    public void restartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene to restart the game
     }
 
     public void UpdateScore(int points)
