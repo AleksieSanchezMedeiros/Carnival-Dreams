@@ -329,7 +329,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2659075659705028718, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
   m_PrefabInstance: {fileID: 6393341044054922181}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 805586560}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ecb5d10f8274d114c9ce490f373f1207, type: 3}
@@ -984,6 +984,29 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 728087807}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &805586560 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3039767889140342041, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+  m_PrefabInstance: {fileID: 6393341044054922181}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &805586565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805586560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfde66f4752a69946aa5903dca875bcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings:
+  - {fileID: 11400000, guid: b26c9238d7c178e488b083f99eda15b3, type: 2}
+  - {fileID: 11400000, guid: 0e5ea75e717a3e0478ee45d52b02b6cd, type: 2}
+  - {fileID: 11400000, guid: 6b6b48eb11bb0e8448e1d150b7f3ebbd, type: 2}
+  playerGun: {fileID: 7930134197828427501}
+  gamePanel: {fileID: 8261304701087867616}
 --- !u!1 &1119873323
 GameObject:
   m_ObjectHideFlags: 0
@@ -2249,10 +2272,109 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4739762009295097263, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4739762009295097263, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4739762009295097263, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 805586565}
+    - target: {fileID: 4739762009295097263, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4739762009295097263, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: setDificulty
+      objectReference: {fileID: 0}
+    - target: {fileID: 4739762009295097263, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DifficultyPicker, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4739762009295097263, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4739762009295097263, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 6374824040725136737, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 6.09552
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586036770464804353, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586036770464804353, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586036770464804353, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 805586565}
+    - target: {fileID: 6586036770464804353, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586036770464804353, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: setDificulty
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586036770464804353, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DifficultyPicker, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586036770464804353, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6586036770464804353, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7559121071206713883, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7559121071206713883, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7559121071206713883, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 805586565}
+    - target: {fileID: 7559121071206713883, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7559121071206713883, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: setDificulty
+      objectReference: {fileID: 0}
+    - target: {fileID: 7559121071206713883, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: DifficultyPicker, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7559121071206713883, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3039767889140342041, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 805586565}
   m_SourcePrefab: {fileID: 100100000, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
 --- !u!1001 &7930134197828427500
 PrefabInstance:

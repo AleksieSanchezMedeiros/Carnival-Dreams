@@ -7,13 +7,13 @@ public class DifficultyPicker : MonoBehaviour
     [SerializeField] DifficultySetting[] settings;
     [SerializeField] Gun playerGun;
     [SerializeField]GamePanel gamePanel;
-    void setDificulty(int difficultyPicked)
+    public void setDificulty(int difficultyPicked)
     {
         playerGun.setDifficultyVariables(settings[difficultyPicked].ammoMax, settings[difficultyPicked].reloadTime, settings[difficultyPicked].fireRate);
         for (int i = 0; i < settings[difficultyPicked].spawnChances.Length; i++)
         {
             gamePanel.itemsOnRail[i].spawnChance = settings[difficultyPicked].spawnChances[i];
         }
-        
+        Debug.Log("Difficulty switched to: " + settings[difficultyPicked].name);
     }
 }
