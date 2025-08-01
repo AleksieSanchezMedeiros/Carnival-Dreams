@@ -7,6 +7,7 @@ public class DifficultyPicker : MonoBehaviour
     [SerializeField] DifficultySetting[] settings;
     [SerializeField] Gun playerGun;
     [SerializeField]GamePanel gamePanel;
+    [SerializeField] GameUI gameUI;
 
     [SerializeField] GameObject difficultyScreen;
     [SerializeField] GameObject tutorialScreen;
@@ -65,6 +66,7 @@ public class DifficultyPicker : MonoBehaviour
         {
             gamePanel.itemsOnRail[i].spawnChance = settings[difficultyPicked].spawnChances[i];
         }
+        gameUI.currentDifficulty = settings[difficultyPicked];
         Debug.Log("Difficulty switched to: " + settings[difficultyPicked].name);
         HideDifficultyScreen();
         ShowTutorialScreen();

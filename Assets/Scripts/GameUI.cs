@@ -2,6 +2,10 @@ using UnityEngine;
 using System.Collections;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Microsoft.Unity.VisualStudio.Editor;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Unity.VisualScripting;
 
 public class GameUI : MonoBehaviour
 {
@@ -22,6 +26,11 @@ public class GameUI : MonoBehaviour
 
     public float gameDuration;
 
+    public DifficultySetting currentDifficulty;
+
+    //[SerializeField] Animation invincibleAnim, infiniteAnim;
+    [SerializeField] UnityEngine.UI.Image invincibleImg, infiniteImg;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     Gun gun;
@@ -39,6 +48,8 @@ public class GameUI : MonoBehaviour
         ammoText.text = "0"; // Initialize ammo text
         gun = FindFirstObjectByType<Gun>();
         StartCoroutine(GameTimer());
+        invincibleImg.gameObject.SetActive(false);
+        infiniteImg.gameObject.SetActive(false);
     }
 
     public void restartGame()
@@ -80,23 +91,44 @@ public class GameUI : MonoBehaviour
             return; // Prevent multiple activations
         }
         StartCoroutine(ReloadPowerUpCoroutine(duration)); // Start the coroutine to handle the reload power-up
+        //initiateReloadPowerUp();
     }
 
     private IEnumerator ReloadPowerUpCoroutine(float duration)
     {
         isReloadActive = true; // Set the flag to indicate the power-up is active
         DisplayPowerUp("Inf Ammo!"); // Display the power-up message
-        float originalReloadTime = gun.reloadTime; // Store the original reload time
-        float originalFireRate = gun.fireRate; // Store the original fire rate
         gun.reloadTime = 0f;
         gun.fireRate = 0.1f;
-        StartCoroutine(timerCoroutineReload(duration));
+        infiniteImg.gameObject.SetActive(true);
+        //StartCoroutine(timerCoroutineReload(duration));
         yield return new WaitForSeconds(duration); // Wait for the duration of the power-up
         DisplayPowerUp("Infinite ammo over!"); // Display the end of the power-up message
         isReloadActive = false; // Reset the flag
-        gun.reloadTime = originalReloadTime;
-        gun.fireRate = originalFireRate;
+        infiniteImg.gameObject.SetActive(false);
+        gun.reloadTime = currentDifficulty.reloadTime;
+        gun.fireRate = currentDifficulty.fireRate;
+    } 
+
+    /* private void initiateReloadPowerUp()
+    {
+        isReloadActive = true; // Set the flag to indicate the power-up is active
+        DisplayPowerUp("Inf Ammo!"); // Display the power-up message
+        infiniteImg.gameObject.SetActive(true);
+        gun.reloadTime = 0f;
+        gun.fireRate = 0.1f;
+        infiniteAnim.Play("Infi");
     }
+
+    public void haltReloadPowerup()
+    {
+        infiniteAnim.Stop();
+        DisplayPowerUp("Infinite ammo over!"); // Display the end of the power-up message
+        isReloadActive = false; // Reset the flag
+        infiniteImg.gameObject.SetActive(false);
+        gun.reloadTime = currentDifficulty.reloadTime;
+        gun.fireRate = currentDifficulty.fireRate;
+    } */
 
     public void InvinciblePowerUp(float duration)
     {
@@ -107,17 +139,36 @@ public class GameUI : MonoBehaviour
         }
 
         StartCoroutine(InvinciblePowerUpCoroutine(duration)); // Start the coroutine to handle the invincibility power-up
+        //initiateInvinciblePowerUp();
     }
 
     private IEnumerator InvinciblePowerUpCoroutine(float duration)
     {
         isInvincibleActive = true; // Set the flag to indicate the power-up is active
         DisplayPowerUp("Score Invincible!"); // Display the power-up message
-        StartCoroutine(timerCoroutine(duration));
+        invincibleImg.gameObject.SetActive(true);
+        //StartCoroutine(timerCoroutine(duration));
         yield return new WaitForSeconds(duration); // Wait for the duration of the power-up
         DisplayPowerUp("Invincibility Over!"); // Display the end of the power-up message
         isInvincibleActive = false; // Reset the flag
+        invincibleImg.gameObject.SetActive(false);
     }
+
+    /* void initiateInvinciblePowerUp()
+    {
+        DisplayPowerUp("Score Invincible!"); // Display the power-up message
+        isInvincibleActive = true; // Set the flag to indicate the power-up is active
+        invincibleImg.gameObject.SetActive(true);
+        invincibleAnim.Play("Invi");
+    }
+
+    public void haltInvinciblePowerUp()
+    {
+        isInvincibleActive = false;
+        DisplayPowerUp("Invincibility Over!"); // Display the end of the power-up message
+        invincibleAnim.Stop();
+        invincibleImg.gameObject.SetActive(false);
+    } */
 
     public void DisplayPowerUp(string powerUpName)
     {

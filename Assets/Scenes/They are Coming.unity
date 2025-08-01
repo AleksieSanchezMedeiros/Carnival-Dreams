@@ -1222,6 +1222,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6b6b48eb11bb0e8448e1d150b7f3ebbd, type: 2}
   playerGun: {fileID: 7930134197828427501}
   gamePanel: {fileID: 8261304701087867616}
+  gameUI: {fileID: 0}
   difficultyScreen: {fileID: 1935087222}
   tutorialScreen: {fileID: 179402142}
   restartButton: {fileID: 0}
@@ -2563,6 +2564,26 @@ PrefabInstance:
       propertyPath: m_ReferenceResolution.y
       value: 1080
       objectReference: {fileID: 0}
+    - target: {fileID: 1023082016272464609, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.0043945312
+      objectReference: {fileID: 0}
+    - target: {fileID: 1547432304050565255, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1547432304050565255, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_Color.b
+      value: 0.49803925
+      objectReference: {fileID: 0}
+    - target: {fileID: 1547432304050565255, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_Color.g
+      value: 0.49803925
+      objectReference: {fileID: 0}
+    - target: {fileID: 1547432304050565255, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_Color.r
+      value: 0.49803925
+      objectReference: {fileID: 0}
     - target: {fileID: 1547907876142894523, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -2779,6 +2800,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6430286081511404822, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -17.86
+      objectReference: {fileID: 0}
     - target: {fileID: 6434365386436481708, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
       propertyPath: m_SizeDelta.x
       value: 500
@@ -2879,8 +2904,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedComponents:
+    - {fileID: 1547432304050565255, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+    m_RemovedGameObjects:
+    - {fileID: 2723221443467538148, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1547907876142894523, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
       insertIndex: -1
@@ -3086,6 +3113,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6b6b48eb11bb0e8448e1d150b7f3ebbd, type: 2}
   playerGun: {fileID: 7930134197828427501}
   gamePanel: {fileID: 8261304701087867616}
+  gameUI: {fileID: 0}
   difficultyScreen: {fileID: 0}
   tutorialScreen: {fileID: 0}
   restartButton: {fileID: 0}
