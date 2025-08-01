@@ -4,5 +4,9 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/They are Coming.unity
+    guid: 2e446ced570212347a07b42e357d7639
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

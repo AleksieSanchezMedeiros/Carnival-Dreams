@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using TMPro;
 using UnityEngine.SceneManagement;
-using Microsoft.Unity.VisualStudio.Editor;
+//using Microsoft.Unity.VisualStudio.Editor;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;

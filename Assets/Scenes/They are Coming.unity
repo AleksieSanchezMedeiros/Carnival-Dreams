@@ -1222,10 +1222,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6b6b48eb11bb0e8448e1d150b7f3ebbd, type: 2}
   playerGun: {fileID: 7930134197828427501}
   gamePanel: {fileID: 8261304701087867616}
-  gameUI: {fileID: 0}
+  gameUI: {fileID: 245186767}
   difficultyScreen: {fileID: 1935087222}
   tutorialScreen: {fileID: 179402142}
-  restartButton: {fileID: 0}
+  restartButton: {fileID: 236753003}
 --- !u!1 &1119873323
 GameObject:
   m_ObjectHideFlags: 0
