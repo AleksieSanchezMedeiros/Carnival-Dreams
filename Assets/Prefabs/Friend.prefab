@@ -125,6 +125,8 @@ MonoBehaviour:
   speed: 3
   killLength: 1000
   gameUI: {fileID: 2659075659705028718, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+  ouch: {fileID: 8300000, guid: a673313d9b450bf43b2ba1809fcfd025, type: 3}
+  audioSource: {fileID: 0}
 --- !u!1001 &7955401008717842753
 PrefabInstance:
   m_ObjectHideFlags: 0

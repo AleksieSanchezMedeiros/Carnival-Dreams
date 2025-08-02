@@ -695,6 +695,7 @@ GameObject:
   - component: {fileID: 480231658}
   - component: {fileID: 480231657}
   - component: {fileID: 480231656}
+  - component: {fileID: 480231660}
   m_Layer: 0
   m_Name: Console stand in
   m_TagString: Untagged
@@ -791,6 +792,103 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1775428373}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &480231660
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480231655}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &509671813 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1111322649541923435, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
@@ -2608,6 +2706,18 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: -980
       objectReference: {fileID: 0}
+    - target: {fileID: 2659075659705028718, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: music
+      value: 
+      objectReference: {fileID: 8300000, guid: cc5c1575a139f3e45a03b5000a671744, type: 3}
+    - target: {fileID: 2659075659705028718, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 480231660}
+    - target: {fileID: 2659075659705028718, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: powerUpMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 62093214c54f55045924b00767e3139a, type: 3}
     - target: {fileID: 3039767889140342041, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -2972,6 +3082,14 @@ PrefabInstance:
       propertyPath: gameUI
       value: 
       objectReference: {fileID: 245186767}
+    - target: {fileID: 5644697726842596721, guid: 7616816456c47ac4ba6cd0d1607624a4, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 480231660}
+    - target: {fileID: 5644697726842596721, guid: 7616816456c47ac4ba6cd0d1607624a4, type: 3}
+      propertyPath: shootingSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 156c9b2b309e0054eacc562a22581d66, type: 3}
     - target: {fileID: 5795893477989952770, guid: 7616816456c47ac4ba6cd0d1607624a4, type: 3}
       propertyPath: m_Name
       value: Gun

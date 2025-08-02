@@ -28,7 +28,8 @@ public class GameUI : MonoBehaviour
 
     public DifficultySetting currentDifficulty;
 
-    //[SerializeField] Animation invincibleAnim, infiniteAnim;
+    [SerializeField] AudioClip music, powerUpMusic;
+    [SerializeField] AudioSource audioSource;
     [SerializeField] UnityEngine.UI.Image invincibleImg, infiniteImg;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -50,6 +51,8 @@ public class GameUI : MonoBehaviour
         StartCoroutine(GameTimer());
         invincibleImg.gameObject.SetActive(false);
         infiniteImg.gameObject.SetActive(false);
+        audioSource.clip = music;
+        audioSource.Play();
     }
 
     public void restartGame()

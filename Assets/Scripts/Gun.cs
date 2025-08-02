@@ -17,6 +17,9 @@ public class Gun : MonoBehaviour
     public int currentAmmoCount;
 
     Camera mainCamera;
+    
+    [SerializeField] AudioClip shootingSound;
+    [SerializeField] AudioSource audioSource;
 
     bool canFire; // Flag to check if the gun can fire
     public bool reloading = false; // Flag to check if the gun is currently reloading
@@ -63,6 +66,7 @@ public class Gun : MonoBehaviour
         // Check for fire input
         if (Input.GetMouseButtonDown(0))
         {
+            audioSource.PlayOneShot(shootingSound);
             if (canFire && (currentAmmoCount > 0 || gameUI.isReloadActive)) // Only fire if canFire is true and ammo is available
             {
 
