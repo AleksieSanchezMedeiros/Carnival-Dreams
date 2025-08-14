@@ -52,6 +52,7 @@ public class GameUI : MonoBehaviour
         invincibleImg.gameObject.SetActive(false);
         infiniteImg.gameObject.SetActive(false);
         audioSource.clip = music;
+        audioSource.loop = true;
         audioSource.Play();
     }
 
@@ -213,6 +214,7 @@ public class GameUI : MonoBehaviour
         powerUpText.text = "Game Over!"; // Display game over message
 
         Debug.Log("Game Over!");
+        restartGame();
         Time.timeScale = 0f;
     }
 
