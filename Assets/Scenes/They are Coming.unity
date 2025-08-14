@@ -2706,6 +2706,14 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: -980
       objectReference: {fileID: 0}
+    - target: {fileID: 1637690460027064604, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2149883614077879206, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2267232701554253088, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
       propertyPath: m_LocalScale.x
       value: 2.1138
@@ -2721,6 +2729,10 @@ PrefabInstance:
     - target: {fileID: 2267232701554253088, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 20.312
+      objectReference: {fileID: 0}
+    - target: {fileID: 2656764533176190612, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2659075659705028718, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
       propertyPath: music
