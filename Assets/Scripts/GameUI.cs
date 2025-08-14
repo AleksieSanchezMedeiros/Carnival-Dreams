@@ -2,6 +2,10 @@ using UnityEngine;
 using System.Collections;
 using TMPro;
 using UnityEngine.SceneManagement;
+//using Microsoft.Unity.VisualStudio.Editor;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
+using Unity.VisualScripting;
 
 public class GameUI : MonoBehaviour
 {
@@ -18,41 +22,43 @@ public class GameUI : MonoBehaviour
 
     public TextMeshProUGUI timerTextReload; // Reference to the game over text component
 
-    public TextMeshProUGUI gameOverText; // Reference to the game over text component
+    public float amountOfPopUpTime = 0.2f; // Time to display power-up text
 
-    public float amountOfPopUpTime = 3f; // Time to display power-up text
+    public float gameDuration;
 
-    public float gameDuration = 5f;
+    public DifficultySetting currentDifficulty;
 
-    public GameObject blur; // Reference to the game over panel
-    public GameObject gameOverButton; // Reference to the game over button
-    public GameObject replayButton; // Reference to the replay button
+    [SerializeField] AudioClip music, powerUpMusic;
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] UnityEngine.UI.Image invincibleImg, infiniteImg;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     Gun gun;
-
-    public bool gameEnded = false; // Flag to check if the game has ended
 
     public bool isReloadActive = false; // Flag to check if the reload power-up is active
 
     bool isInvincibleActive = false; // Flag to check if the invincibility power-up is active
     void Start()
     {
-        Time.timeScale = 1f; // Ensure the game is running at normal speed
         isReloadActive = false; // Initialize the reload power-up flag
-        gameEnded = false; // Initialize the game ended flag
         isInvincibleActive = false; // Initialize the invincibility power-up flag
-        blur.SetActive(false); // Hide the blur effect at the start
-        gameOverButton.SetActive(false); // Hide the game over button at the start
-        replayButton.SetActive(false); // Hide the replay button at the start
         score = 0; // Initialize score
-        gameOverText.text = ""; // Clear game over text at the start
-        scoreText.text = "Score: " + score; // Update the UI text
+        scoreText.text = score.ToString(); // Update the UI text
         powerUpText.text = ""; // Clear power-up text at the start
-        ammoText.text = "Ammo: 0"; // Initialize ammo text
+        ammoText.text = "0"; // Initialize ammo text
         gun = FindFirstObjectByType<Gun>();
         StartCoroutine(GameTimer());
+        invincibleImg.gameObject.SetActive(false);
+        infiniteImg.gameObject.SetActive(false);
+        audioSource.clip = music;
+        audioSource.loop = true;
+        audioSource.Play();
+    }
+
+    public void restartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene to restart the game
     }
 
     public void UpdateScore(int points)
@@ -68,22 +74,17 @@ public class GameUI : MonoBehaviour
             score = 0;
         }
 
-        scoreText.text = "Score: " + score; // Update the UI text
+        scoreText.text = score.ToString(); // Update the UI text
     }
 
     public void UpdateAmmo(string ammo)
     {
-        if (gameEnded)
-        {
-            ammoText.text = ""; // Clear ammo text if the game has ended
-            return; // Exit if the game has ended
-        }
-        ammoText.text = "Ammo: " + ammo; // Update the UI text
+        ammoText.text = ammo; // Update the UI text
     }
 
     public void DisplayReload()
     {
-        ammoText.text = "Reloading..."; // Update the UI text to indicate reloading
+        ammoText.text = "Rel..."; // Update the UI text to indicate reloading
     }
 
     public void ReloadPowerUp(float duration)
@@ -94,23 +95,44 @@ public class GameUI : MonoBehaviour
             return; // Prevent multiple activations
         }
         StartCoroutine(ReloadPowerUpCoroutine(duration)); // Start the coroutine to handle the reload power-up
+        //initiateReloadPowerUp();
     }
 
     private IEnumerator ReloadPowerUpCoroutine(float duration)
     {
         isReloadActive = true; // Set the flag to indicate the power-up is active
         DisplayPowerUp("Inf Ammo!"); // Display the power-up message
-        float originalReloadTime = gun.reloadTime; // Store the original reload time
-        float originalFireRate = gun.fireRate; // Store the original fire rate
         gun.reloadTime = 0f;
         gun.fireRate = 0.1f;
-        StartCoroutine(timerCoroutineReload(duration));
+        infiniteImg.gameObject.SetActive(true);
+        //StartCoroutine(timerCoroutineReload(duration));
         yield return new WaitForSeconds(duration); // Wait for the duration of the power-up
-        DisplayPowerUp("Reload Over!"); // Display the end of the power-up message
+        DisplayPowerUp("Infinite ammo over!"); // Display the end of the power-up message
         isReloadActive = false; // Reset the flag
-        gun.reloadTime = originalReloadTime;
-        gun.fireRate = originalFireRate;
+        infiniteImg.gameObject.SetActive(false);
+        gun.reloadTime = currentDifficulty.reloadTime;
+        gun.fireRate = currentDifficulty.fireRate;
+    } 
+
+    /* private void initiateReloadPowerUp()
+    {
+        isReloadActive = true; // Set the flag to indicate the power-up is active
+        DisplayPowerUp("Inf Ammo!"); // Display the power-up message
+        infiniteImg.gameObject.SetActive(true);
+        gun.reloadTime = 0f;
+        gun.fireRate = 0.1f;
+        infiniteAnim.Play("Infi");
     }
+
+    public void haltReloadPowerup()
+    {
+        infiniteAnim.Stop();
+        DisplayPowerUp("Infinite ammo over!"); // Display the end of the power-up message
+        isReloadActive = false; // Reset the flag
+        infiniteImg.gameObject.SetActive(false);
+        gun.reloadTime = currentDifficulty.reloadTime;
+        gun.fireRate = currentDifficulty.fireRate;
+    } */
 
     public void InvinciblePowerUp(float duration)
     {
@@ -121,17 +143,36 @@ public class GameUI : MonoBehaviour
         }
 
         StartCoroutine(InvinciblePowerUpCoroutine(duration)); // Start the coroutine to handle the invincibility power-up
+        //initiateInvinciblePowerUp();
     }
 
     private IEnumerator InvinciblePowerUpCoroutine(float duration)
     {
         isInvincibleActive = true; // Set the flag to indicate the power-up is active
         DisplayPowerUp("Score Invincible!"); // Display the power-up message
-        StartCoroutine(timerCoroutine(duration));
+        invincibleImg.gameObject.SetActive(true);
+        //StartCoroutine(timerCoroutine(duration));
         yield return new WaitForSeconds(duration); // Wait for the duration of the power-up
         DisplayPowerUp("Invincibility Over!"); // Display the end of the power-up message
         isInvincibleActive = false; // Reset the flag
+        invincibleImg.gameObject.SetActive(false);
     }
+
+    /* void initiateInvinciblePowerUp()
+    {
+        DisplayPowerUp("Score Invincible!"); // Display the power-up message
+        isInvincibleActive = true; // Set the flag to indicate the power-up is active
+        invincibleImg.gameObject.SetActive(true);
+        invincibleAnim.Play("Invi");
+    }
+
+    public void haltInvinciblePowerUp()
+    {
+        isInvincibleActive = false;
+        DisplayPowerUp("Invincibility Over!"); // Display the end of the power-up message
+        invincibleAnim.Stop();
+        invincibleImg.gameObject.SetActive(false);
+    } */
 
     public void DisplayPowerUp(string powerUpName)
     {
@@ -156,39 +197,25 @@ public class GameUI : MonoBehaviour
         float timeRemaining = gameDuration;
         while (timeRemaining > 0f)
         {
-            gameTimerText.text = "Time: " + Mathf.CeilToInt(timeRemaining);
+            int seconds = Mathf.RoundToInt(timeRemaining % 60);
+            int minutes = Mathf.RoundToInt(timeRemaining / 60);
+            gameTimerText.text = minutes + ":" + seconds;
             yield return new WaitForSeconds(1f);
             timeRemaining--;
         }
 
-        gameTimerText.text = "Time: 0";
+        gameTimerText.text = "Game Over!";
         EndGame();
     }
 
     private void EndGame()
     {
-        gameEnded = true; // Set the game ended flag to true
-        blur.SetActive(true); // Show the blur effect
-        gameOverButton.SetActive(true); // Show the game over button
-        replayButton.SetActive(true); // Show the replay button
-    
-        powerUpText.text = ""; // Clear power-up text
-        timerText.text = ""; // Clear the timer text
-        timerTextReload.text = ""; // Clear the reload timer text
-        scoreText.text = ""; // Clear the score text
-        gameOverText.text = "Game Over!\nFinal Score: " + score; // Display game over message
+        
+        powerUpText.text = "Game Over!"; // Display game over message
+
+        Debug.Log("Game Over!");
+        restartGame();
         Time.timeScale = 0f;
-    }
-
-    public void ReplayGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene to restart the game
-    }
-
-    public void QuitGame()
-    {
-        Debug.Log("Quitting game..."); // Log the quit action
-        Application.Quit(); // Quit the application
     }
 
     public void UpdateTimer(float timeRemaining)

@@ -17,6 +17,9 @@ public class Gun : MonoBehaviour
     public int currentAmmoCount;
 
     Camera mainCamera;
+    
+    [SerializeField] AudioClip shootingSound;
+    [SerializeField] AudioSource audioSource;
 
     bool canFire; // Flag to check if the gun can fire
     public bool reloading = false; // Flag to check if the gun is currently reloading
@@ -34,13 +37,8 @@ public class Gun : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameUI.gameEnded) // If the game has ended, do not allow firing
-        {
-            canFire = false; // Disable firing
-            reloading = false; // Disable reloading
-            gameUI.UpdateAmmo(""); // Update ammo UI to blank
-            return; // Exit the update method
-        }
+
+        if(Time.timeScale == 0) return; // If the game is paused, do not update the gun
 
         if (!reloading && !gameUI.isReloadActive)
             gameUI.UpdateAmmo(currentAmmoCount.ToString()); // Update ammo UI
@@ -68,9 +66,10 @@ public class Gun : MonoBehaviour
         // Check for fire input
         if (Input.GetMouseButtonDown(0))
         {
+            audioSource.PlayOneShot(shootingSound);
             if (canFire && (currentAmmoCount > 0 || gameUI.isReloadActive)) // Only fire if canFire is true and ammo is available
             {
-                
+
                 if (!gameUI.isReloadActive) currentAmmoCount--; //If reload power-up is not active, decrease ammo count
                 else currentAmmoCount = ammoMax;
 
@@ -143,5 +142,10 @@ public class Gun : MonoBehaviour
         Destroy(firedBullet); // Destroy the bullet after the delay
     }
 
-
+    public void setDifficultyVariables(int ammoMax, float reloadTime, float fireRate)
+    {
+        this.ammoMax = ammoMax;
+        this.reloadTime = reloadTime;
+        this.fireRate = fireRate;
+    }
 }
