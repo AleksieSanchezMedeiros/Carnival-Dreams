@@ -2892,6 +2892,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5506686524086484781, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5685575857014384357, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6163940290512476395, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
@@ -3046,6 +3050,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 8598728455291561189, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8758747872380301653, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
       propertyPath: m_SizeDelta.x
       value: 0.000012397766
@@ -3058,6 +3066,8 @@ PrefabInstance:
     - {fileID: 1547432304050565255, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
     m_RemovedGameObjects:
     - {fileID: 2723221443467538148, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+    - {fileID: 5685575857014384357, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
+    - {fileID: 6963478588440539837, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 1547907876142894523, guid: 1c6c543df45a12e46b74092ff15f1f0f, type: 3}
       insertIndex: -1
